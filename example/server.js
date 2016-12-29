@@ -10,7 +10,7 @@
 
 const fs     = require('fs');
 const zetta  = require('zetta');
-const sensor = require('./rain-scout');
+const sensor = require('../rain-scout');
 const app    = require('./apps/rain_app');
 
 const serverPort  = 1107;  // IIOT port definied and claimed by Agilatech
@@ -38,16 +38,23 @@ if (securityCheck == 2) {
 	options.tls = {key:keyfile, cert:certfile};
 }
 
-zetta(options)
-    .name('testServer')
 
-    // NOTE: the options for the sensor are overridden here
-    .use(sensor, { "gpio":60, "tipAmount":0.254 })
 
-    .use(app)
+var zet = zetta(options)
     .listen(serverPort, function() {
 		console.log(`*** VersaLink Test Server running ${(securityCheck == 2) ? 'with TLS Security' : 'unsecured'} on port ${serverPort}`);
 	});
+
+zet.link('http://agilatech.com:1107');
+
+// naming the server is optional
+zet.name('testServer');
+
+// NOTE: the options for the sensor can be overridden here
+zet.use(sensor, {"tipAmount":0.33});
+
+// this loads and starts a sensor demo app
+zet.use(app);
 
 /*  Example TSL files created using OpenSSL with the following commands:
 

@@ -11,7 +11,7 @@
 const options = require('./options');
 
 const Scout = require('zetta-scout');
-const rain = require('../rain');
+const rain = require('./rain');
 const util = require('util');
 
 const RainScout = module.exports = function(opts) {
@@ -42,7 +42,7 @@ RainScout.prototype.init = function(next) {
   this.server.find(query, function(err, results) {
     if (results[0]) {
       self.provision(results[0], Rain, options);
-      self.server.info('Provisioned RAIN');
+      self.server.info('Provisioned known device RAIN');
     } else {
       self.discover(Rain, options);
       self.server.info('Discovered new device RAIN');

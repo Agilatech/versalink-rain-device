@@ -2,7 +2,7 @@
   "name": "versalink-rain-device",
   "version": "0.8.0",
   "description": "Tipping Bucket Rain Gauge device driver for use in the Agilatech VersaLink system",
-  "main": "rain.js",
+  "main": "rain-scout.js",
   "directories": {
     "example": "example"
   },
@@ -30,6 +30,7 @@
   "homepage": "https://github.com/Agilatech/versalink-rain-device#readme",
   "dependencies": {
     "versalink-device": "*",
+    "zetta-scout": "*",
     "@agilatech/rain": "*"
   }
 }
