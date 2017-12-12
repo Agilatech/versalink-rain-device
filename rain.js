@@ -4,14 +4,14 @@ const device = require('@agilatech/rain');
 
 module.exports = class Rain extends VersalinkDevice {
     
-    constructor(options) {
+    constructor(config) {
 
-        const gpio = options.gpio;
-        const tipAmount = options['tipAmount']; // || 0.25; // assume .25mm/tip if not given
+        const gpio = config.gpio;
+        const tipAmount = config['tipAmount']; // || 0.25; // assume .25mm/tip if not given
         
         const hardware = new device(gpio, tipAmount);
 
-        super(hardware, options);
+        super(hardware, config);
 
         this.hardware.watchValueAtIndex(0, (this._tipEvent).bind(this));
 

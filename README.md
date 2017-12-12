@@ -14,12 +14,12 @@ const versalink = require('@agilatech/versalink-server');
 var rain = require('@agilatech/versalink-rain-device');
 
 versalink()
-.use(rain, [options])  // where [options] define operational paramters -- omit to accept defaults
+.use(rain, [config])  // where [config] define operational paramters -- omit to accept defaults
 .listen(<port number>)   // where <port number> is the port on which the zetta server should listen
 ```
 
-####options
-_options_ is an object which contains key/value pairs used for driver configuration.
+####config
+_config_ is an object which contains key/value pairs used for driver configuration.
 
 ```
 "streamPeriod":<period>
@@ -36,12 +36,12 @@ The amount of rain in mm per bucket tip
 ```
 
 ####streamPeriod and devicePoll
-These options have little applicability for an event-based sensor such as this.  Since this sensor simply updates the monitored variable each and every time the rain bucket tips, it makes little sense to stream the value or poll the device for a new value.  Because of this, it is advisable to **set streamPeriod to 0**, which disables streaming, and set the devicePoll to some arbitrarily large value. Regardless of the setting of these options, the value **amount** will be updated whenever a bucket tip event is registered.
+These config have little applicability for an event-based sensor such as this.  Since this sensor simply updates the monitored variable each and every time the rain bucket tips, it makes little sense to stream the value or poll the device for a new value.  Because of this, it is advisable to **set streamPeriod to 0**, which disables streaming, and set the devicePoll to some arbitrarily large value. Regardless of the setting of these config, the value **amount** will be updated whenever a bucket tip event is registered.
 
-####options example
-Here is an example of an options varible which disables streaming, polls the device every hour, sets the GPIO pin number to 60, and the rain increment per bucket tip to 0.254mm:
+####config example
+Here is an example of an config varible which disables streaming, polls the device every hour, sets the GPIO pin number to 60, and the rain increment per bucket tip to 0.254mm:
 ```
-const options = {
+const config = {
     "streamPeriod":0, 
     "devicePoll":3600000,
     "gpio":60,
@@ -51,7 +51,7 @@ const options = {
 
   
 ####Default values
-If not specified in the options object, the program uses the following default values:
+If not specified in the config object, the program uses the following default values:
 * _streamPeriod_ : 10000 (10,000ms or 10 seconds)
 * _devicePoll_ : 1000 (1,000ms or 1 second)
 
@@ -68,7 +68,7 @@ const sensor = require('versalink-rain-device');
 zetta().use(sensor).listen(1107);
 ```
 
-To easily specify some options, simply supply them in an object in the use statement like this:
+To easily specify some config, simply supply them in an object in the use statement like this:
 ```
 zetta().use(sensor, { "bus":"/dev/i2c-0", "streamPeriod":0, "gpio":44, "tipAmount":0.36 });
 ```
