@@ -3,30 +3,20 @@
   "version": "0.10.0",
   "description": "Tipping Bucket Rain Gauge device driver for use in the Agilatech VersaLink system",
   "main": "rain-scout.js",
-  "directories": {
-    "example": "example"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "ssh://scott@209.200.216.6:22125/volume1/git_repos/versalink-rain-device"
+    "url": "git+https://github.com/Agilatech/versalink-rain-device"
   },
   "keywords": [
     "sensor",
     "rain",
     "rainfall",
     "rain gauge",
-    "tipping bucket",
-    "beaglebone",
-    "raspberry pi"
+    "tipping bucket"
   ],
   "author": "Agilatech <scott@agilatech.com> (http://agilatech.com)",
-  "license": "SEE LICENSE in LICENSE",
+  "license": "MIT",
   "dependencies": {
-    "@agilatech/versalink-device": "*",
-    "zetta-scout": "*",
     "@agilatech/rain": "*"
   }
 }
